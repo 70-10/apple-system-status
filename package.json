@@ -15,6 +15,7 @@
     "co": "4.6.0",
     "html-entities": "1.2.0",
     "jsdom": "9.4.0",
+    "ora": "0.2.3",
     "phantomjs-prebuilt": "2.1.7",
     "promise-phantom": "3.1.1"
   },

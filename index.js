@@ -11,6 +11,7 @@ const Entities = require("html-entities").AllHtmlEntities;
 const entities = new Entities();
 
 co(function* () {
+  const spinner = require("ora")("Loading...").start();
   const phantom = yield driver.create({path: phantomjs.path});
   const page = yield phantom.createPage();
 
@@ -26,6 +27,7 @@ co(function* () {
   }
 
   yield page.close();
+  spinner.stop();
   console.log(table.toString());
   yield phantom.exit();
 });
