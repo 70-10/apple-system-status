@@ -10,20 +10,23 @@ const Entities = require("html-entities").AllHtmlEntities;
 
 const entities = new Entities();
 
-co(function* () {
+co(function*() {
   const spinner = require("ora")("Loading...").start();
-  const phantom = yield driver.create({path: phantomjs.path});
+  const phantom = yield driver.create({ path: phantomjs.path });
   const page = yield phantom.createPage();
 
   yield page.open("https://developer.apple.com/system-status/");
   const result = yield page.evaluate(getServices);
   const table = new Table({
     head: ["name", "status"],
-    colWidths: [40, 15]
+    colWidths: [40, 15],
   });
   for (let e of result) {
     const service = jsdom(e);
-    table.push([entities.decode(service.querySelector(".matrix_p").innerHTML), service.querySelector("span").className]);
+    table.push([
+      entities.decode(service.querySelector(".matrix_p").innerHTML),
+      service.querySelector("span").className,
+    ]);
   }
 
   yield page.close();

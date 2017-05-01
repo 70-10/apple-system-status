@@ -19,7 +19,10 @@
     "phantomjs-prebuilt": "2.1.7",
     "promise-phantom": "3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-node": "^4.2.2"
+  },
   "engines": {
     "node": ">=4.0.0"
   },
