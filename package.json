@@ -6,22 +6,19 @@
     "name": "70_10",
     "email": "7010.dev@gmail.com"
   },
-  "bin": "index.js",
-  "bugs": {
-    "url": "https://github.com/70-10/apple-system-status/issues"
-  },
+  "bin": "cli.js",
   "dependencies": {
-    "cli-table2": "0.2.0",
-    "co": "4.6.0",
-    "html-entities": "1.2.0",
-    "jsdom": "9.4.0",
-    "ora": "0.2.3",
-    "phantomjs-prebuilt": "2.1.7",
-    "promise-phantom": "3.1.1"
+    "axios": "^0.16.2",
+    "co": "^4.6.0",
+    "jsonp": "^0.2.1",
+    "node-jsonp": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-plugin-node": "^4.2.2"
+    "eslint": "^4.2.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "prettier": "^1.5.2"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -30,9 +27,6 @@
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/70-10/apple-system-status.git"
-  },
+  "repository": "70-10/apple-system-status",
   "scripts": {}
 }
