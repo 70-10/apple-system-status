@@ -1,42 +1,31 @@
-#!/usr/bin/env node
+const axios = require("axios");
 
-"use strict";
-const driver = require("promise-phantom");
-const phantomjs = require("phantomjs-prebuilt");
-const jsdom = require("jsdom").jsdom;
-const Table = require("cli-table2");
-const co = require("co");
-const Entities = require("html-entities").AllHtmlEntities;
+module.exports = () => {
+  return axios
+    .get(
+      "https://www.apple.com/support/systemstatus/data/developer/system_status_en_US.js",
+      {
+        params: {
+          callback: "jsonCallback",
+          _: Date.now(),
+        },
+      }
+    )
+    .then(res => jsonpParse(res.data).services.filter(hasEvent));
+};
 
-const entities = new Entities();
+function hasEvent(service) {
+  return service.events.length > 0;
+}
 
-co(function* () {
-  const spinner = require("ora")("Loading...").start();
-  const phantom = yield driver.create({path: phantomjs.path});
-  const page = yield phantom.createPage();
-
-  yield page.open("https://developer.apple.com/system-status/");
-  const result = yield page.evaluate(getServices);
-  const table = new Table({
-    head: ["name", "status"],
-    colWidths: [40, 15]
-  });
-  for (let e of result) {
-    const service = jsdom(e);
-    table.push([entities.decode(service.querySelector(".matrix_p").innerHTML), service.querySelector("span").className]);
+function jsonpParse(jsonpStr) {
+  try {
+    return JSON.parse(jsonpStr);
+  } catch (e) {
+    const jsonStr = jsonpStr.substring(
+      jsonpStr.indexOf("({") + 1,
+      jsonpStr.indexOf("})") + 1
+    );
+    return JSON.parse(jsonStr);
   }
-
-  yield page.close();
-  spinner.stop();
-  console.log(table.toString());
-  yield phantom.exit();
-});
-
-function getServices() {
-  var tds = document.querySelectorAll("#dashboard tr>td");
-  var innerHTMLs = [];
-  for (var i = 0; i < tds.length; i++) {
-    innerHTMLs.push(tds[i].innerHTML);
-  }
-  return innerHTMLs;
 }
