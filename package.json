@@ -1,7 +1,7 @@
 {
   "name": "apple-system-status",
   "description": "Apple System Status",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "main": "index.js",
   "bin": {
     "apple-system-status": "cli.js",
