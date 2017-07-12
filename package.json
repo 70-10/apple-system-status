@@ -2,13 +2,18 @@
   "name": "apple-system-status",
   "description": "Apple System Status",
   "version": "0.3.0",
+  "main": "index.js",
+  "bin": {
+    "apple-system-status": "cli.js",
+    "ass": "cli.js"
+  },
   "author": {
     "name": "70_10",
     "email": "7010.dev@gmail.com"
   },
-  "bin": "cli.js",
   "dependencies": {
     "axios": "^0.16.2",
+    "chalk": "^2.0.1",
     "co": "^4.6.0",
     "jsonp": "^0.2.1",
     "node-jsonp": "^1.0.2"
@@ -23,10 +28,8 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "homepage": "https://github.com/70-10/apple-system-status#readme",
   "keywords": [],
   "license": "MIT",
-  "main": "index.js",
   "repository": "70-10/apple-system-status",
   "scripts": {}
 }
