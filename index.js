@@ -1,9 +1,17 @@
 const axios = require("axios");
 
 module.exports = () => {
-  return axios(
-    "https://www.apple.com/support/systemstatus/data/developer/system_status_en_US.js"
-  ).then(res => jsonpParse(res.data).services.filter(hasEvent));
+  return axios
+    .get(
+      "https://www.apple.com/support/systemstatus/data/developer/system_status_en_US.js",
+      {
+        params: {
+          callback: "jsonCallback",
+          _: Date.now(),
+        },
+      }
+    )
+    .then(res => jsonpParse(res.data).services.filter(hasEvent));
 };
 
 function hasEvent(service) {
