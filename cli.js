@@ -10,9 +10,7 @@ appleSystemStatus()
       return;
     }
     services.forEach(s => {
-      console.log(
-        `${chalk.red.underline.bold(s.serviceName)} - ${s.redirectUrl}`
-      );
+      console.log(`${chalk.red.underline.bold(s.serviceName)} - ${s.redirectUrl}`);
       console.log(s.events);
     });
   })
