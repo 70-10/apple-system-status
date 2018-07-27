@@ -31,5 +31,7 @@
   "keywords": [],
   "license": "MIT",
   "repository": "70-10/apple-system-status",
-  "scripts": {}
+  "scripts": {
+    "lint": "prettier-eslint --write \"./@(cli|index).js\""
+  }
 }
